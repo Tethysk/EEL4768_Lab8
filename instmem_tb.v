@@ -63,7 +63,7 @@ always begin
 	{wAddr, rightData} = testvectors[vectornum];
 	#1  // must allow state machine time to run its behavioral code
 
-	$display("\nAddress:%h Data:%h Output:%h",wAddr, wData, rightData);
+	//$display("\nAddress:%h Data:%h Output:%h",wAddr, wData, rightData);
 	
 	if (rightData !== wData) begin 
 		errors = errors+1;	// found incorrect output
