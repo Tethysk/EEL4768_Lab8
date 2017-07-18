@@ -1,0 +1,11 @@
+// Name: Matthew Otto
+// Last Modified: 2017/07/18
+//
+// Course: EEL4768
+// Assignemnt: Lab8- Test vector for instruction memory
+//
+// Instruction memory Test vectors
+// addr_data
+
+00400000_03020100
+0040AFF0_F3F2F1F0
