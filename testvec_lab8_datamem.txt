@@ -1,0 +1,11 @@
+// Name: Matthew Otto
+// Last Modified: 2017/07/23
+//
+// Course: EEL4768
+// Assignemnt: Lab8- Test vector for data memory
+//
+// Data memory Test vectors
+// addredd_WE|writeByte|writeHalfWord|clk_dataIn_rightData
+
+
+X
