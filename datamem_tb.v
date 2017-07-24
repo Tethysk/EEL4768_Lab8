@@ -14,18 +14,17 @@
 //
 //
 module datamem_tb;
-parameter STARTADDR = 32'h1001_0000;
-parameter LENGTH = 32'h0000_0FFF;
+parameter STARTADDR = 32'h1000_0000;
+parameter LENGTH = 32'h0000_1000;
 
 reg [31:0] wAddress; // machine input
 reg [31:0] wDataIn;
 reg wWE, wWriteByte, wWriteHalfWord, wClk;
-
 wire[31:0] wData;    // machine output
 
 reg [31:0] rightData; // correct output
 
-reg [63:0] testvectors[0:100];	// array of test vector inputs
+reg [99:0] testvectors[0:100];	// array of test vector inputs
 reg [10:0] errors;				// counts errors between UUT and TV known output
 reg [10:0] vectornum;			// loop counter for processing the test vactors
 
@@ -38,7 +37,7 @@ datamem #(STARTADDR, LENGTH) uut(
 .writebyte     (wWriteByte),
 .writehalfword (wWriteHalfWord),
 .clk           (wClk),
-.data (wData)
+.data          (wData)
 );
 
 
@@ -56,13 +55,13 @@ always begin
 		$finish;
 	end
 	
-	{wAddr, rightData} = testvectors[vectornum];
+	{wAddress, wDataIn, wWE,wWriteByte, wWriteHalfWord, wClk, rightData} = testvectors[vectornum];
 	#1  // must allow state machine time to run its behavioral code
 
-	//$display("\nAddress:%h Data:%h Output:%h",wAddr, wData, rightData);
-	
+		
 	if (rightData !== wData) begin 
 		errors = errors+1;	// found incorrect output
+		$display("\nAddress:%h DataIn:%h writeEnable:%b writeByte:%b writeHalf:%b  CLK:%b");
 		$display("incorrectly outputs Y=%h expected:%h \n",wData,rightData);
 	end
 	
